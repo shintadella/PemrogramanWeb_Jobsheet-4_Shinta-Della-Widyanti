@@ -57,16 +57,18 @@ $nilaiSiswa = [85, 92, 78, 64, 90, 75, 88, 79, 70, 96];
 
 sort($nilaiSiswa);
 
-$nilaiTengah = array_slice($nilaiSiswa, 2, count($nilaiSiswa) - 4);
+$total = 0;
+$jumlah = count($nilaiSiswa);
 
-$totalNilai = array_sum($nilaiTengah);
+for ($i = 2; $i < $jumlah - 2; $i++) {
+    $total += $nilaiSiswa[$i];
+}
 
-$rataRata = $totalNilai / count($nilaiTengah);
+$rataRata = $total / ($jumlah - 4);
 
 echo "Daftar nilai siswa: " . implode(", ", $nilaiSiswa) . "<br>";
-echo "Nilai setelah buang 2 tertinggi & 2 terendah: " . implode(", ", $nilaiTengah) . "<br>";
-echo "Total nilai: $totalNilai <br>";
-echo "Rata-rata: " . number_format($rataRata, 2) . "<br><br>";
+echo "Total nilai (setelah mengabaikan 2 tertinggi & 2 terendah): $total <br>";
+echo "Rata-rata nilai: $rataRata <br><br>";
 
 $hargaProduk = 120000;
 $diskon = 0;
@@ -79,11 +81,17 @@ $hargaAkhir = $hargaProduk - $diskon;
 
 echo "Harga produk: Rp " . number_format($hargaProduk, 0, ',', '.') . "<br>";
 echo "Diskon: Rp " . number_format($diskon, 0, ',', '.') . "<br>";
-echo "Harga yang harus dibayar: Rp " . number_format($hargaAkhir, 0, ',', '.') . "<br><br>";
+echo "Harga yang harus dibayar: Rp " . number_format($hargaAkhir, 0, ',', '.');
 
-$poin = 620;
+$skorPemain = 650;
+$batasHadiah = 500;
 
-echo "Total skor pemain adalah: " . $poin . "<br>";
+if ($skorPemain > $batasHadiah) {
+    $mendapatkanHadiah = "YA";
+} else {
+    $mendapatkanHadiah = "TIDAK";
+}
 
-echo "Apakah pemain mendapatkan hadiah tambahan? " . ($poin > 500 ? "YA" : "TIDAK");
+echo "<br><br>Total skor pemain adalah: " . $skorPemain . "<br>";
+echo "Apakah pemain mendapatkan hadiah tambahan? " . $mendapatkanHadiah;
 ?>
